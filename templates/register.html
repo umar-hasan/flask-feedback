@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Sign Up</h2>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-danger">
+{{message}}
+</div>
+{% endfor %}
+<form action="/register" method="POST">
+    {{form.hidden_tag()}}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <div>
+            {{field.label}}
+            {{field}}
+        </div>
+        
+
+        {% for error in field.errors %}
+        {{error}}
+        {% endfor %}
+    {% endfor %}
+    <button class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

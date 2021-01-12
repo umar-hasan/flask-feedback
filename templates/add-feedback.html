@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add Feedback</h2>
+<form action="/users/{{user}}/feedback/add" method="POST">
+    {{form.hidden_tag()}}
+
+    <div class="my-3">
+        {{form.title.label}}
+        {{form.title}}
+    </div>
+    <div class="align-top my-3">
+        <span class="align-top">
+            {{form.content.label}}
+        </span>
+        
+        {{form.content}}
+    </div>
+    <button class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

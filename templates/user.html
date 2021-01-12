@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{user.username}}</h2>
+<div>
+    <strong>First Name: </strong> <span>{{user.first_name}}</span>
+</div>
+<div>
+    <strong>Last Name: </strong> <span>{{user.last_name}}</span>
+</div>
+<div>
+    <strong>Email: </strong> <span>{{user.email}}</span>
+</div>
+
+
+<form action="/users/{{user.username}}/delete" method="POST">
+    <button class="btn btn-danger">Delete</button>
+</form>
+
+<h3>Feedback</h3>
+
+{% for f in feedback %}
+<div class="my-4">
+    <h5>{{f.title}}</h5>
+    <div class="d-flex">
+        <a href="/feedback/{{f.id}}/update">
+            <button class="btn btn-success">Edit</button>
+        </a>
+        <form action="/feedback/{{f.id}}/delete" method="POST">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>  
+</div>
+{% endfor %}
+
+<a href="/users/{{user.username}}/feedback/add">Add Feedback</a>
+
+{% endblock %}
